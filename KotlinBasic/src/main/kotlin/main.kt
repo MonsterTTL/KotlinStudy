@@ -1,3 +1,7 @@
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.math.max
+
 fun main(){
 
         // 类型安全检查 and Elvis运算符
@@ -12,6 +16,21 @@ fun main(){
         val ans2 = Dog == greet
         println("Cat and Dog:${Dog == Cat};greet is Dog:${Dog == greet}")
 
+        val num1 = 3
+        val num2 = 5
+        println(maxLambda(num1,num2).invoke())
+        welcome("GGBone","WellDone")
+
+        //筛选偶数
+        val arrs = intArrayOf(1,2,3,4,5,9,10,20,22,63,73,83,100)
+        val arrs2 = listOf(1,2,3,4,5,9,10,20,22,63,73,83,100)
+        val answer = selectOu(*arrs2.toIntArray())
+        val answer2 = selectOu(*arrs)
+        println("Here is Answers:")
+        for(number in answer) println(number)
+
+        //解构
+        destructTest2()
 }
 
 //字符串模版 用${}定位
@@ -60,5 +79,41 @@ class Animal{
         override fun equals(other: Any?): Boolean {
                 return other is Animal  //is 运算符，检查引用所指向对象是否属于特定类型 像InstanceOf
         }
+}
+fun sayHello(content:String):Unit{
+        println("Welcome: $content")
+        return Unit
+}
+
+fun maxLambda(number1:Int,number2: Int)= {
+       if(number1 > number2) number1 else number2
+}
+
+fun welcome(name:String,content:String = "Hello"){
+        println("$name,$content")
+}
+
+fun selectOu(vararg numbers:Int):ArrayList<Int>{
+    val ans = ArrayList<Int>()
+    for(number in numbers){
+        if(number % 2 == 0)
+           ans.add(number)
+    }
+    return ans
+}
+
+fun getFullName() = Triple("John","Quincy","Adams")
+fun destructTest(){
+        val result = getFullName()
+        val first = result.first
+        val second = result.second
+        val third = result.third
+        println("first=$first,second=$second,third=$third")
+}
+
+fun destructTest2(){
+        val result = getFullName()
+        val(first,second,third) = result
+        println("first=$first,second=$second,third=$third")
 }
 
