@@ -30,6 +30,7 @@ fun main(){
         for(number in answer) println(number)
 
         //解构
+        destructTest()
         destructTest2()
 }
 
